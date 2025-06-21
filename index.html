@@ -1,9 +1,11 @@
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🐀 AudioManga Mayoneso </title>
+  <title>🐀 AudioManga Mayoneso</title>
   <style>
     body {
       margin: 0;
@@ -21,11 +23,13 @@
     }
 
     .content-box {
-      background: rgba(0, 0, 0, 0.8); /* fondo semitransparente para resaltar */
-      padding: 40px 60px;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 20px 20px;
       border-radius: 15px;
       text-align: center;
       box-shadow: 0 0 50px rgba(0, 0, 0, 1);
+      max-height: 90vh;
+      overflow-y: auto;
     }
 
     h1 {
@@ -36,7 +40,7 @@
 
     .chapter-link {
       display: block;
-      max-width: 150px;  /* ancho máximo */
+      max-width: 200px;
       margin: 6px auto;
       padding: 10px 30px;
       background: rgba(255, 255, 255, 0.3);
@@ -51,29 +55,69 @@
 
     .chapter-link:hover {
       background: rgba(255, 255, 255, 0.8);
+      color: black;
+    }
+
+    .controls {
+      margin-bottom: 20px;
+    }
+
+    .controls input, .controls button {
+      padding: 10px;
+      margin: 5px;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .controls input {
+      width: 180px;
+    }
+
+    .controls button {
+      background: #222;
+      color: white;
+      text-decoration: none;
+      cursor: p;
+      border: 1px solid white;
+      transition: background 0.2s;
+    }
+
+    .controls button:hover {
+      background-color: #444;
     }
   </style>
 </head>
 <body>
   <div class="content-box">
     <h1>🐀 AUDIOMANGA MAYONESO 🐀</h1>
-    <a href="chapters/chapter1152.html" class="chapter-link">CAPITULO 1152</a>
-    <a href="chapters/chapter1151.html" class="chapter-link">CAPITULO 1151</a>
-    <a href="chapters/chapter1150.html" class="chapter-link">CAPITULO 1150</a>
-    <a href="chapters/chapter1137.html" class="chapter-link">CAPITULO 1137</a>
-    <a href="chapters/chapter1136.html" class="chapter-link">CAPITULO 1136</a>
-    <a href="chapters/chapter1135.html" class="chapter-link">CAPITULO 1135</a>
-    <a href="chapters/chapter1134.html" class="chapter-link">CAPITULO 1134</a>
-    <a href="chapters/chapter1133.html" class="chapter-link">CAPITULO 1133</a>
-    <a href="chapters/chapter1132.html" class="chapter-link">CAPITULO 1132</a>
-    <a href="chapters/chapter1131.html" class="chapter-link">CAPITULO 1131</a>
-    <a href="chapters/chapter1130.html" class="chapter-link">CAPITULO 1130</a>
-    <a href="chapters/chapter1129.html" class="chapter-link">CAPITULO 1129</a>
-    <a href="chapters/chapter1128.html" class="chapter-link">CAPITULO 1128</a>
-    <a href="chapters/chapter1127.html" class="chapter-link">CAPITULO 1127</a>
-    <a href="chapters/chapter1126.html" class="chapter-link">CAPITULO 1126</a>
-    <a href="chapters/chapter1000.html" class="chapter-link">CAPITULO 1000</a>
+
+    <div class="controls">
+      <input type="text" id="searchInput" placeholder="Buscar capítulo...">
+      <button onclick="sortChapters(true)" title="Antiguos primero">Ordenar ↑</button>
+      <button onclick="sortChapters(false)" title="Recientes primero">Ordenar ↓</button>
+    </div>
+
+    <div id="chapterContainer">
+      <a href="chapters/chapter1152.html" class="chapter-link">CAPITULO 1152</a>
+      <a href="chapters/chapter1151.html" class="chapter-link">CAPITULO 1151</a>
+      <a href="chapters/chapter1150.html" class="chapter-link">CAPITULO 1150</a>
+      <a href="chapters/chapter1137.html" class="chapter-link">CAPITULO 1137</a>
+      <a href="chapters/chapter1136.html" class="chapter-link">CAPITULO 1136</a>
+      <a href="chapters/chapter1135.html" class="chapter-link">CAPITULO 1135</a>
+      <a href="chapters/chapter1134.html" class="chapter-link">CAPITULO 1134</a>
+      <a href="chapters/chapter1133.html" class="chapter-link">CAPITULO 1133</a>
+      <a href="chapters/chapter1132.html" class="chapter-link">CAPITULO 1132</a>
+      <a href="chapters/chapter1131.html" class="chapter-link">CAPITULO 1131</a>
+      <a href="chapters/chapter1130.html" class="chapter-link">CAPITULO 1130</a>
+      <a href="chapters/chapter1129.html" class="chapter-link">CAPITULO 1129</a>
+      <a href="chapters/chapter1128.html" class="chapter-link">CAPITULO 1128</a>
+      <a href="chapters/chapter1127.html" class="chapter-link">CAPITULO 1127</a>
+      <a href="chapters/chapter1126.html" class="chapter-link">CAPITULO 1126</a>
+      <a href="chapters/chapter1000.html" class="chapter-link">CAPITULO 1000</a>
+    </div>
   </div>
+ <!-- Script que gestiona el filtrado -->
+  <script src="filter.js"></script>
 </body>
 </html>
-
