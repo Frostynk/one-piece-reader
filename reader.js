@@ -84,7 +84,7 @@ let extraMusicStarted = false;
 let isFading = false;
 let currentTrackPlaying = ''; // Track actualmente sonando
 
-function fadeOut(audio, duration = 1500) {
+function fadeOut(audio, duration = 1000) {
   return new Promise(resolve => {
     const stepTime = 50;
     const steps = duration / stepTime;
@@ -102,7 +102,7 @@ function fadeOut(audio, duration = 1500) {
   });
 }
 
-function fadeIn(audio, targetVolume = 0.1, duration = 1500) {
+function fadeIn(audio, targetVolume = 0.05, duration = 1000) {
   return new Promise(resolve => {
     const stepTime = 50;
     const steps = duration / stepTime;
@@ -128,7 +128,7 @@ async function changeTrackWithFade(newTrack) {
   isFading = true;
 
   if (!audio.paused) {
-    await fadeOut(audio, 1500);
+    await fadeOut(audio, 1000);
   }
 
   audio.src = newTrack;
@@ -137,7 +137,7 @@ async function changeTrackWithFade(newTrack) {
     newTrack.includes('title.mp3') || newTrack.includes('tobecontinued.mp3')
   );
 
-  await fadeIn(audio, 0.1, 1500);
+  await fadeIn(audio, 0.05, 1000);
 
   currentTrackPlaying = newTrack; // guardamos el track actual
 
@@ -157,7 +157,7 @@ window.addEventListener('scroll', () => {
       audio.currentTime = 0;
 
       audio.src = '../music/tobecontinued.mp3';
-      audio.volume = 0.1;
+      audio.volume = 0.05;
       audio.loop = false;
       audio.play();
 
