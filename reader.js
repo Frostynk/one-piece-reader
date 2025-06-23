@@ -123,24 +123,39 @@ function fadeIn(audio, targetVolume = 0.05, duration = 1000) {
   });
 }
 
+function getBaseTrackName(trackPath) {
+  return trackPath.replace('_low', '').toLowerCase();
+}
+
 async function changeTrackWithFade(newTrack) {
-  if (isFading || currentTrackPlaying === newTrack) return; // Evita repetir fades
+  if (isFading || currentTrackPlaying === newTrack) return;
   isFading = true;
 
-  if (!audio.paused) {
+  const baseCurrent = getBaseTrackName(currentTrackPlaying);
+  const baseNew = getBaseTrackName(newTrack);
+  const isSameBaseTrack = baseCurrent === baseNew;
+
+  let savedTime = 0;
+  if (isSameBaseTrack) {
+    savedTime = audio.currentTime;
+  } else if (!audio.paused) {
     await fadeOut(audio, 1000);
   }
 
   audio.src = newTrack;
-  audio.currentTime = 0;
+  audio.currentTime = savedTime;
   audio.loop = !(
     newTrack.includes('title.mp3') || newTrack.includes('tobecontinued.mp3')
   );
 
-  await fadeIn(audio, 0.05, 1000);
+  if (isSameBaseTrack) {
+    audio.volume = 0.05;
+    audio.play();
+  } else {
+    await fadeIn(audio, 0.05, 1000);
+  }
 
-  currentTrackPlaying = newTrack; // guardamos el track actual
-
+  currentTrackPlaying = newTrack;
   isFading = false;
 }
 
