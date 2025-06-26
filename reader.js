@@ -172,7 +172,7 @@ window.addEventListener('scroll', () => {
       audio.currentTime = 0;
 
       audio.src = '../music/tobecontinued.mp3';
-      audio.volume = 0.05;
+      audio.volume = 1;
       audio.loop = false;
       audio.play();
 
